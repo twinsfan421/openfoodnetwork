@@ -31,6 +31,13 @@ it:
             on_demand_but_count_on_hand_set: "deve restare vuoto se su richiesta"
             limited_stock_but_no_count_on_hand: "Torna alla lista dei pagamenti"
   activemodel:
+    attributes:
+      order_management/reports/enterprise_fee_summary/parameters:
+        distributor_ids: "Distributori"
+        producer_ids: "Produttori"
+        order_cycle_ids: "Cicli di richiesteCicli di richieste"
+        shipping_method_ids: "Metodi di spedizione"
+        payment_method_ids: "Metodi di pagamento"
     errors:
       models:
         subscription_validator:
@@ -1962,7 +1969,6 @@ it:
   spree_admin_enterprises_none_text: "Non hai nessua azienda al momento"
   spree_admin_enterprises_tabs_hubs: "HUBS"
   spree_admin_enterprises_producers_manage_products: "GESTISCI PRODOTTI"
-  spree_admin_enterprises_any_active_products_text: "Non hai prodotti attivi."
   spree_admin_enterprises_create_new_product: "CREA UN NUOVO PRODOTTO"
   spree_admin_single_enterprise_alert_mail_confirmation: "Conferma l'indirizzo email per"
   spree_admin_single_enterprise_alert_mail_sent: "Abbiamo spedito una mail a"
@@ -2457,6 +2463,25 @@ it:
   producers:
     signup:
       start_free_profile: "Inizia con un profilo gratuito e migliora quando sei pronto!"
+  order_management:
+    reports:
+      enterprise_fee_summary:
+        fee_calculated_on_transfer_through_all: "Tutti"
+        fee_placements:
+          supplier: "In arrivo"
+          distributor: "In uscita"
+          coordinator: "Referente"
+        formats:
+          csv:
+            header:
+              fee_type: "Tipo di tariffa"
+              customer_name: "Consumatore"
+              tax_category_name: "Categoria d'imposta"
+          html:
+            header:
+              fee_type: "Tipo di tariffa"
+              customer_name: "Consumatore"
+              tax_category_name: "Categoria d'imposta"
   spree:
     email: Email
     account_updated: "Account aggiornato!"
@@ -2493,6 +2518,9 @@ it:
             distributor: "Distributore:"
             order_cycle: "Ciclo di richieste:"
       overview:
+        products:
+          active_products:
+            zero: "Non hai prodotti attivi."
         order_cycles:
           order_cycles: "Cicli di richiesteCicli di richieste"
           order_cycles_tip: "I cicli di richieste determinano dove e quando i tuoi prodotti sono disponibili per i consumatori."
@@ -2558,6 +2586,9 @@ it:
       reports:
         table:
           select_and_search: "Seleziona filtri e clicca su %{option} per accedere al tuo dato"
+        enterprise_fee_summaries:
+          report:
+            none: "Nessuno"
       users:
         index:
           listing_users: "Elenco Utenti"

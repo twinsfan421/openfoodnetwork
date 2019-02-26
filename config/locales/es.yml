@@ -31,6 +31,13 @@ es:
             on_demand_but_count_on_hand_set: "debe estar en blanco si está bajo demanda"
             limited_stock_but_no_count_on_hand: "se debe especificar porque se ha definido estoc limitado"
   activemodel:
+    attributes:
+      order_management/reports/enterprise_fee_summary/parameters:
+        distributor_ids: "Hubs"
+        producer_ids: "Productoras"
+        order_cycle_ids: "Ciclos de Pedido"
+        shipping_method_ids: "Métodos de envío"
+        payment_method_ids: "Métodos de Pago"
     errors:
       models:
         subscription_validator:
@@ -2000,7 +2007,6 @@ es:
   spree_admin_enterprises_none_text: "No tienes ninguna organización"
   spree_admin_enterprises_tabs_hubs: "HUBS"
   spree_admin_enterprises_producers_manage_products: "GESTIONAR PRODUCTOS"
-  spree_admin_enterprises_any_active_products_text: "No tienes ningún producto activo"
   spree_admin_enterprises_create_new_product: "CREAR UN NUEVO PRODUCTO"
   spree_admin_single_enterprise_alert_mail_confirmation: "Confirma la dirección de email para"
   spree_admin_single_enterprise_alert_mail_sent: "Te hemos enviado un mail a"
@@ -2527,6 +2533,25 @@ es:
   producers:
     signup:
       start_free_profile: "Empieze con un perfil gratuito, y amplíelo cuando esté preparado!"
+  order_management:
+    reports:
+      enterprise_fee_summary:
+        fee_calculated_on_transfer_through_all: "Todos"
+        fee_placements:
+          supplier: "Entrante"
+          distributor: "Saliente"
+          coordinator: "Coordinadora"
+        formats:
+          csv:
+            header:
+              fee_type: "Tipo de Comisión"
+              customer_name: "Consumidora"
+              tax_category_name: "Categoría de impuestos"
+          html:
+            header:
+              fee_type: "Tipo de Comisión"
+              customer_name: "Consumidora"
+              tax_category_name: "Categoría de impuestos"
   spree:
     email: Email
     account_updated: "Cuenta actualizada!"
@@ -2570,6 +2595,9 @@ es:
             distributor: "Distribuidora:"
             order_cycle: "Ciclo de pedido:"
       overview:
+        products:
+          active_products:
+            zero: "No tienes ningún producto activo"
         order_cycles:
           order_cycles: "Ciclos de Pedido"
           order_cycles_tip: "Los ciclos de pedido determinan cuándo y dónde los productos están disponibles para las consumidoras."
@@ -2643,6 +2671,9 @@ es:
           bulk_coop_allocation: 'Bulk Co-op - Asignación'
           bulk_coop_packing_sheets: 'Bulk Co-op - Hojas de Empaquetado'
           bulk_coop_customer_payments: 'Bulk Co-op - Pagos de las Consumidoras'
+        enterprise_fee_summaries:
+          report:
+            none: "Ninguno"
       users:
         index:
           listing_users: "Listado de Usuarias"

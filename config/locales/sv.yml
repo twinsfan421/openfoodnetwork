@@ -12,6 +12,14 @@ sv:
           attributes:
             email:
               taken: "Det finns redan ett konto med denna mailadress. Logga in eller återställ ditt lösenord."
+  activemodel:
+    attributes:
+      order_management/reports/enterprise_fee_summary/parameters:
+        distributor_ids: "Hubbar"
+        producer_ids: "Producenter "
+        order_cycle_ids: "Beställningsomgångar"
+        shipping_method_ids: "Transportsätt"
+        payment_method_ids: "Betalningssätt"
   devise:
     failure:
       invalid: |
@@ -1395,7 +1403,6 @@ sv:
   spree_admin_enterprises_none_text: "Du har inget företag ännu"
   spree_admin_enterprises_tabs_hubs: "MATSTÄLLEN"
   spree_admin_enterprises_producers_manage_products: "HANTERA PRODUKTER"
-  spree_admin_enterprises_any_active_products_text: "Du har inga aktiva produkter."
   spree_admin_enterprises_create_new_product: "SKAPA EN NY PRODUKT"
   spree_admin_single_enterprise_alert_mail_confirmation: "Var vänlig och fastställ e-postadressen för"
   spree_admin_single_enterprise_alert_mail_sent: "Vi har sänt e-post till "
@@ -1871,6 +1878,25 @@ sv:
   producers:
     signup:
       start_free_profile: "Börja med en gratis profil och uppgradera när du är redo!"
+  order_management:
+    reports:
+      enterprise_fee_summary:
+        fee_calculated_on_transfer_through_all: "Alla"
+        fee_placements:
+          supplier: "Inkommande"
+          distributor: "Utgående"
+          coordinator: "Koordinator"
+        formats:
+          csv:
+            header:
+              fee_type: "Avgiftstyp"
+              customer_name: "Kund"
+              tax_category_name: "Skattekategori"
+          html:
+            header:
+              fee_type: "Avgiftstyp"
+              customer_name: "Kund"
+              tax_category_name: "Skattekategori"
   spree:
     admin:
       orders:
@@ -1891,6 +1917,9 @@ sv:
             distributor: "Distributör:"
             order_cycle: "Beställningsomgång:"
       overview:
+        products:
+          active_products:
+            zero: "Du har inga aktiva produkter."
         order_cycles:
           order_cycles: "Beställningsomgångar"
           order_cycles_tip: "Beställningsomgångar bestämmer när och var dina produkter är tillgängliga för kunderna."
@@ -1922,6 +1951,9 @@ sv:
           bulk_coop_allocation: 'Bulk Co-op - Allokering'
           bulk_coop_packing_sheets: 'Bulk Co-op - Förpackningssedlar'
           bulk_coop_customer_payments: 'Bulk Co-op - kundbetalningar'
+        enterprise_fee_summaries:
+          report:
+            none: "Ingen"
       users:
         index:
           user: "Användare"

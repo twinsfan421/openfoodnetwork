@@ -26,6 +26,13 @@ en_BE:
             orders_close_at:
               after_orders_open_at: must be after open date
   activemodel:
+    attributes:
+      order_management/reports/enterprise_fee_summary/parameters:
+        distributor_ids: "Hubs"
+        producer_ids: "Producers"
+        order_cycle_ids: "Order Cycles"
+        shipping_method_ids: "Shipping Methods"
+        payment_method_ids: "Payment Methods"
     errors:
       models:
         subscription_validator:
@@ -1984,7 +1991,6 @@ en_BE:
   spree_admin_enterprises_none_text: "You don't have any enterprises yet"
   spree_admin_enterprises_tabs_hubs: "HUBS"
   spree_admin_enterprises_producers_manage_products: "MANAGE PRODUCTS"
-  spree_admin_enterprises_any_active_products_text: "You don't have any active products."
   spree_admin_enterprises_create_new_product: "CREATE A NEW PRODUCT"
   spree_admin_single_enterprise_alert_mail_confirmation: "Please confirm the email address for"
   spree_admin_single_enterprise_alert_mail_sent: "We've sent an email to"
@@ -2498,6 +2504,25 @@ en_BE:
   producers:
     signup:
       start_free_profile: "Start with a free profile, and expand when you're ready!"
+  order_management:
+    reports:
+      enterprise_fee_summary:
+        fee_calculated_on_transfer_through_all: "All"
+        fee_placements:
+          supplier: "Incoming"
+          distributor: "Outgoing"
+          coordinator: "Coordinator"
+        formats:
+          csv:
+            header:
+              fee_type: "Fee Type"
+              customer_name: "Customer"
+              tax_category_name: "Tax Category"
+          html:
+            header:
+              fee_type: "Fee Type"
+              customer_name: "Customer"
+              tax_category_name: "Tax Category"
   spree:
     email: Email
     account_updated: "Account updated!"
@@ -2540,6 +2565,9 @@ en_BE:
             distributor: "Distributor:"
             order_cycle: "Order cycle:"
       overview:
+        products:
+          active_products:
+            zero: "You don't have any active products."
         order_cycles:
           order_cycles: "Order Cycles"
           order_cycles_tip: "Order cycles determine when and where your products are available to customers."
@@ -2605,6 +2633,9 @@ en_BE:
           bulk_coop_allocation: 'Bulk Co-op - Allocation'
           bulk_coop_packing_sheets: 'Bulk Co-op - Packing Sheets'
           bulk_coop_customer_payments: 'Bulk Co-op - Customer Payments'
+        enterprise_fee_summaries:
+          report:
+            none: "None"
       users:
         index:
           user: "User"

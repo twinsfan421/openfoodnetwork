@@ -25,7 +25,19 @@ de_DE:
           attributes:
             orders_close_at:
               after_orders_open_at: muss nach dem Öffnungsdatum sein
+        variant_override:
+          count_on_hand:
+            using_producer_stock_settings_but_count_on_hand_set: "muss leer sein, da die Einstellungen des Produzentenbestands verwendet werden"
+            on_demand_but_count_on_hand_set: "muss bei Bedarf leer sein"
+            limited_stock_but_no_count_on_hand: "muss angegeben werden, da nur begrenzte Lagerbestände erforderlich sind"
   activemodel:
+    attributes:
+      order_management/reports/enterprise_fee_summary/parameters:
+        distributor_ids: "Hubs"
+        producer_ids: "Erzeuger"
+        order_cycle_ids: "Bestellrunden"
+        shipping_method_ids: "Lieferart"
+        payment_method_ids: "Zahlungsarten"
     errors:
       models:
         subscription_validator:
@@ -196,6 +208,7 @@ de_DE:
   admin_and_handling: Verwaltung & Handhabung
   profile: Profil
   supplier_only: Nur Anbieter
+  has_shopfront: Hat Shopfront
   weight: Gewicht
   volume: Volumen
   items: Artikel
@@ -217,6 +230,10 @@ de_DE:
   quantity: Menge
   pick_up: Abholen
   copy: Kopieren
+  password_confirmation: Passwort Bestätigung
+  reset_password_token: Passwort-Token zurücksetzen
+  expired: abgelaufen ist, fordern Sie bitte ein neues an
+  back_to_payments_list: "Zurück zur Zahlungsliste"
   actions:
     create_and_add_another: "Erstellen und weitere hinzufügen"
   admin:
@@ -465,6 +482,9 @@ de_DE:
         products_no_permission: Sie sind nicht berechtigt, Produkte für dieses Unternehmen zu verwalten
         inventory_no_permission: Sie sind nicht berechtigt, Bestand für diesen Produzenten zu erstellen
         none_saved: hat keine Produkte erfolgreich gespeichert
+        line_number: "Zeile %{number}:"
+        encoding_error: "Bitte überprüfen Sie die Spracheinstellung Ihrer Quelldatei und stellen Sie sicher, dass sie mit der UTF-8-Kodierung gespeichert wird"
+        unexpected_error: "Beim Produktimport ist beim Öffnen der Datei ein unerwarteter Fehler aufgetreten: %{error_message}"
       index:
         select_file: Wählen Sie eine Tabelle zum Hochladen
         spreadsheet: Kalkulationstabelle
@@ -498,6 +518,7 @@ de_DE:
         no_permission: Sie sind nicht berechtigt, dieses Unternehmen zu verwalten
         not_found: Unternehmen konnte nicht in der Datenbank gefunden werden
         no_name: Kein Name
+        blank_enterprise: Für einige Produkte ist kein Unternehmen definiert
         reset_absent?: Fehlende Produkte zurücksetzen
         reset_absent_tip: Den Bestand für alle nicht in der Datei vorhandenen Produkte auf Null setzen
         overwrite_all: Alles überschreiben
@@ -568,6 +589,7 @@ de_DE:
         tip: "Verwenden Sie diese Seite, um Produktmengen über mehrere Bestellungen hinweg zu ändern. Produkte können bei Bedarf auch komplett aus Bestellungen entfernt werden."
         shared: "Geteilte Ressource?"
         order_no: "Best.-Nr."
+        order_date: "Abgeschlossen am"
         max: "Max"
         product_unit: "Produkt: Einheit"
         weight_volume: "Gewicht / Volumen"
@@ -710,6 +732,9 @@ de_DE:
           close_date: Abschlussdatum
         social:
           twitter_placeholder: z.B. @the_prof
+          instagram_placeholder: z.B. the_prof
+          facebook_placeholder: z.B. www.facebook.com/PageNameHere
+          linkedin_placeholder: z.B. www.linkedin.com/in/IhrNameHier
         stripe_connect:
           connect_with_stripe: "Stripe integrieren"
           stripe_connect_intro: "Um Zahlungen mit Kreditkarte zu akzeptieren, müssen Sie Ihr Stripe-Konto mit dem Open Food Network verbinden. Verwenden Sie den Knopf rechts, um loszulegen."
@@ -1011,6 +1036,7 @@ de_DE:
         this_is_an_estimate: |
             Die angezeigten Preise sind nur Schätzungen und werden zum Zeitpunkt der Änderung des Abonnements berechnet.
             Wenn Sie die Preise oder Gebühren ändern, werden die Bestellungen aktualisiert, aber das Abonnement zeigt weiterhin die alten Werte an.
+        not_in_open_and_upcoming_order_cycles_warning: "Für dieses Produkt gibt es keine offenen oder bevorstehenden Bestellzyklen."
       details:
         details: Einzelheiten
         invalid_error: Hoppla! Bitte füllen Sie alle erforderlichen Felder aus ...
@@ -1025,6 +1051,7 @@ de_DE:
         details: Einzelheiten
         address: Adresse
         products: Produkte
+        no_open_or_upcoming_order_cycle: "Kein bevorstehender Bestellzyklus"
       product_already_in_order: Dieses Produkt wurde bereits zur Bestellung hinzugefügt. Bitte änderns Sie stattdessen die Menge.
       orders:
         number: Nummer
@@ -1701,8 +1728,10 @@ de_DE:
   registration:
     steps:
       images:
+        continue: "Fortsetzen"
         back: "Zurück"
         headline: "Dankeschön!"
+        description: "Lassen Sie uns einige schöne Bilder hochladen, damit Ihr Profil gut aussieht! :)"
       type:
         headline: "Letzter Schritt zum Hinzufügen von %{enterprise}!"
         question: "Sind Sie ein Produzent?"
@@ -1978,7 +2007,6 @@ de_DE:
   spree_admin_enterprises_none_text: "Sie haben noch keine Unternehmen"
   spree_admin_enterprises_tabs_hubs: "HUBS"
   spree_admin_enterprises_producers_manage_products: "PRODUKTE VERWALTEN"
-  spree_admin_enterprises_any_active_products_text: "Sie haben keine aktiven Produkte."
   spree_admin_enterprises_create_new_product: "NEUES PRODUKT"
   spree_admin_single_enterprise_alert_mail_confirmation: "Bitte bestätige die E-Mail-Adresse für"
   spree_admin_single_enterprise_alert_mail_sent: "Wir haben eine E-Mail an gesendet"
@@ -2019,6 +2047,8 @@ de_DE:
   order_cycles: "Bestellrunden"
   enterprise_relationships: "Unternehmensberechtigungen"
   remove_tax: "Steuer entfernen"
+  first_name_begins_with: "Der Vorname beginnt mit"
+  last_name_begins_with: "Nachname beginnt mit"
   enterprise_tos_link: "Link zu den AGB des Unternehmens"
   enterprise_tos_message: "Wir wollen mit Menschen zusammenarbeiten, die unsere Ziele und Werte teilen. Als solche bitten wir neue Unternehmen, uns zuzustimmen"
   enterprise_tos_link_text: "AGB."
@@ -2233,6 +2263,7 @@ de_DE:
   validation_msg_relationship_already_established: "^ Diese Beziehung ist bereits etabliert."
   validation_msg_at_least_one_hub: "^ Mindestens ein Hub muss ausgewählt sein"
   validation_msg_product_category_cant_be_blank: "^ Produktkategorie kann nicht leer sein"
+  validation_msg_tax: "^ Steuerkategorie ist erforderlich"
   validation_msg_tax_category_cant_be_blank: "^ Steuerkategorie darf nicht leer sein"
   validation_msg_is_associated_with_an_exising_customer: "ist mit einem bestehenden Kunden verbunden"
   content_configuration_pricing_table: "(TODO: Preistabelle)"
@@ -2421,6 +2452,14 @@ de_DE:
           resolve: Entschlossenheit
       new_tag_rule_dialog:
         select_rule_type: "Wählen Sie einen Regelart aus:"
+      orders:
+        index:
+          per_page: "%{results} pro Seite"
+          view_file: Datei ansehen
+          compiling_invoices: Rechnungen erstellen
+          bulk_invoice_created: Massenrechnung erstellt
+          bulk_invoice_failed: Fehler beim Erstellen der Massenrechnung
+          please_wait: Bitte warten Sie, bis das PDF fertig ist, bevor Sie diesen Modal schließen.
       resend_user_email_confirmation:
         resend: "Erneut senden"
         sending: "Erneut senden..."
@@ -2438,6 +2477,7 @@ de_DE:
         'yes': "Auf Anfrage"
     variant_overrides:
       on_demand:
+        use_producer_settings: "Verwenden Sie die Einstellungen des Produzentenbestands"
         'yes': "Ja"
         'no': "Nein"
       inventory_products: "Katalogprodukte"
@@ -2492,6 +2532,25 @@ de_DE:
   producers:
     signup:
       start_free_profile: "Beginnen Sie mit einem kostenlosen Profil und erweitern Sie es, wenn Sie fertig sind!"
+  order_management:
+    reports:
+      enterprise_fee_summary:
+        fee_calculated_on_transfer_through_all: "Alle"
+        fee_placements:
+          supplier: "Eingehend"
+          distributor: "Ausgehend"
+          coordinator: "Koordinator"
+        formats:
+          csv:
+            header:
+              fee_type: "Art der Gebühr"
+              customer_name: "Kunde"
+              tax_category_name: "Steuerkategorie"
+          html:
+            header:
+              fee_type: "Art der Gebühr"
+              customer_name: "Kunde"
+              tax_category_name: "Steuerkategorie"
   spree:
     email: Email
     account_updated: "Konto aktualisiert!"
@@ -2520,6 +2579,9 @@ de_DE:
           next: "Weiter"
           loading: "Wird geladen"
           no_orders_found: "Keine Bestellungen gefunden"
+          results_found: "%{number} Ergebnisse gefunden."
+          viewing: "Anzeigen von %{start} bis %{end}."
+          print_invoices: "Rechnungen drucken"
         invoice:
           issued_on: Ausgegeben am
           tax_invoice: Steuerrechnung
@@ -2541,6 +2603,12 @@ de_DE:
             other: "Sie haben %{count} aktive Bestellzyklen."
           manage_order_cycles: "BESTELLRUNDEN VERWALTEN"
       payment_methods:
+        new:
+          new_payment_method: "Neue Zahlungsart"
+          back_to_payment_methods_list: "Zurück zur Liste der Zahlungsmethoden"
+        edit:
+          editing_payment_method: "Zahlungsmethode bearbeiten"
+          back_to_payment_methods_list: "Zurück zur Liste der Zahlungsmethoden"
         stripe_connect:
           enterprise_select_placeholder: Wählen...
           loading_account_information_msg: Kontoinformationen von Stripe werden geladen, bitte warten ...
@@ -2592,13 +2660,20 @@ de_DE:
         display_as:
           display_as: Darstellen als
       reports:
+        table:
+          select_and_search: "Wählen Sie Filter aus und klicken Sie auf %{option}, um auf Ihre Daten zuzugreifen."
         bulk_coop:
           bulk_coop_supplier_report: 'Massen-Kooperative - Summen nach Anbieter'
           bulk_coop_allocation: 'Massenkoop - Zuteilung'
           bulk_coop_packing_sheets: 'Massenkoop - Verpackungsblätter'
           bulk_coop_customer_payments: 'Massenkoop - Kundenzahlungen'
+        enterprise_fee_summaries:
+          report:
+            none: "Keine"
       users:
         index:
+          listing_users: "Benutzer auflisten"
+          new_user: "Neuer Benutzer"
           user: "Benutzer"
           search: "Suche"
           email: "E-Mail"

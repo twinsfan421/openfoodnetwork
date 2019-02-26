@@ -25,7 +25,17 @@ fr_BE:
           attributes:
             orders_close_at:
               after_orders_open_at: doit être postérieure à Date d'ouverture
+        variant_override:
+          count_on_hand:
+            on_demand_but_count_on_hand_set: "doit être vide si à la demande"
   activemodel:
+    attributes:
+      order_management/reports/enterprise_fee_summary/parameters:
+        distributor_ids: "Comptoirs"
+        producer_ids: "Producteurs"
+        order_cycle_ids: "Cycles de vente"
+        shipping_method_ids: "Méthodes de livraison"
+        payment_method_ids: "Méthodes de paiement"
     errors:
       models:
         subscription_validator:
@@ -219,8 +229,8 @@ fr_BE:
   copy: Copier
   password_confirmation: confirmation du mot de passe
   reset_password_token: réinitialisation du mot de passe
-  expired: a expiré, s'il vous plaît demander un nouveau
-  back_to_payments_list: "Retour sur la liste des paiements"
+  expired: a expiré, veuillez en demander un nouveau
+  back_to_payments_list: "Retour à la liste des paiements"
   actions:
     create_and_add_another: "Créer et ajouter un nouveau"
   admin:
@@ -470,6 +480,8 @@ fr_BE:
         inventory_no_permission: vous n'avez pas l'autorisation d'ajouter les produits de ce producteur à votre catalogue boutique
         none_saved: n'a pu sauvegarder aucun produit :-(
         line_number: "Ligne %{number} :"
+        encoding_error: "Veuillez vérifier la langage de votre fichier source et l'enregistrer avec un encodage UTF-8"
+        unexpected_error: "L'import du produit à provoqué une erreur à l'ouverture du fichier: %{error_message}"
       index:
         select_file: Sélectionner le fichier (tableur sous format csv) à importer
         spreadsheet: Tableur csv
@@ -716,7 +728,9 @@ fr_BE:
           close_date: Date de fermeture
         social:
           twitter_placeholder: ex. @OpenFoodNet_fr
+          instagram_placeholder: 'ex: le_prof'
           facebook_placeholder: 'ex: www.facebook.com/NomDeLaPage'
+          linkedin_placeholder: 'ex: www.linkedin.com/VotreNom'
         stripe_connect:
           connect_with_stripe: "Connecter avec Stripe"
           stripe_connect_intro: "Pour accepter des paiements utilisant la carte bancaire, vous devez connecter votre compte Stripe à Open Food Network. Cliquez sur le bouton à droite pour commencer."
@@ -1018,6 +1032,7 @@ fr_BE:
         this_is_an_estimate: |
             Les prix affichés ne sont qu'une estimation calculée au moment de la dernière modification de l'abonnement.
             Si vous modifiez les prix ou marges et commissions appliquées, les commandes seront mises à jour, mais l'abonnement affichera toujours les anciennes valeurs.
+        not_in_open_and_upcoming_order_cycles_warning: "Aucun cycle de vente actif ou futur pour ce produit."
       details:
         details: Informations
         invalid_error: Oups! Veuillez remplir tous les champs obligatoires...
@@ -1032,6 +1047,7 @@ fr_BE:
         details: Informations
         address: Adresse
         products: Produits
+        no_open_or_upcoming_order_cycle: "Pas de cycle de vente à venir"
       product_already_in_order: Ce produit a déjà été ajouté à la commande. Veuillez directement modifier la quantité.
       orders:
         number: Nombre
@@ -1459,8 +1475,8 @@ fr_BE:
   enterprises_next_closing: "Clôture des commandes pour ce cycle"
   enterprises_ready_for: "Prêt pour"
   enterprises_choose: "Choisissez votre option:"
-  maps_open: "Ouvre"
-  maps_closed: "Fermée"
+  maps_open: "Ouvert"
+  maps_closed: "Fermé"
   hubs_buy: "Acheter:"
   hubs_shopping_here: "Achats en cours"
   hubs_orders_closed: "Boutique fermée"
@@ -1987,7 +2003,6 @@ fr_BE:
   spree_admin_enterprises_none_text: "Vous n'avez pas encore d'entreprise"
   spree_admin_enterprises_tabs_hubs: "COMPTOIRS"
   spree_admin_enterprises_producers_manage_products: "GÉRER LES PRODUITS"
-  spree_admin_enterprises_any_active_products_text: "Vous n'avez aucun produit actif."
   spree_admin_enterprises_create_new_product: "CRÉER UN NOUVEAU PRODUIT"
   spree_admin_single_enterprise_alert_mail_confirmation: "Veuillez confirmer l'adresse mail pour"
   spree_admin_single_enterprise_alert_mail_sent: "Email envoyé à "
@@ -2028,6 +2043,8 @@ fr_BE:
   order_cycles: "Cycles de Vente"
   enterprise_relationships: "Permissions inter-entreprises"
   remove_tax: "Retirer TVA"
+  first_name_begins_with: "Début du prénom"
+  last_name_begins_with: "Début du nom de famille"
   enterprise_tos_link: "Lien vers les Conditions Générales d'Utilisation"
   enterprise_tos_message: "Nous soutenons la mise en place d'un système alimentaire résilient et durable, et souhaitons œuvrer avec des entreprises qui partagent nos valeurs et notre vision. Ainsi, nous demandons aux entreprises s'enregistrant sur Open Food France de valider nos "
   enterprise_tos_link_text: "Conditions d'utilisation"
@@ -2443,6 +2460,11 @@ fr_BE:
       orders:
         index:
           per_page: "%{results} par page"
+          view_file: Voir fichier
+          compiling_invoices: Compile les factures
+          bulk_invoice_created: Factures créées
+          bulk_invoice_failed: La création des factures a échoué
+          please_wait: Veuillez attendre que le PDF soit disponible avant de fermé ce dialogue.
       resend_user_email_confirmation:
         resend: "Renvoyer"
         sending: "Renvoi...."
@@ -2515,6 +2537,27 @@ fr_BE:
   producers:
     signup:
       start_free_profile: "Commencez par créer votre profil entreprise, et changez de formule quand vous êtes prêt !"
+  order_management:
+    reports:
+      enterprise_fee_summary:
+        fee_calculated_on_transfer_through_all: "Tous"
+        fee_placements:
+          supplier: "Produits entrants (pouvant être mis en vente par les hubs)"
+          distributor: "Produits sortants (mis en vente par/via un ou plusieurs hubs)"
+          coordinator: "Coordinateur"
+        formats:
+          csv:
+            header:
+              fee_type: "Type de marge"
+              enterprise_name: "Bedrijfsbeheerder"
+              customer_name: "Acheteur"
+              tax_category_name: "TVA applicable"
+          html:
+            header:
+              fee_type: "Type de marge"
+              enterprise_name: "Bedrijfsbeheerder"
+              customer_name: "Acheteur"
+              tax_category_name: "TVA applicable"
   spree:
     email: Email
     account_updated: "Compte mis à jour!"
@@ -2545,6 +2588,7 @@ fr_BE:
           no_orders_found: "Aucune commande trouvée pour ces critères"
           results_found: "%{number} résultats trouvés"
           viewing: "Résultats %{start} à %{end} affichés."
+          print_invoices: "Imprimer les factures"
         invoice:
           issued_on: Editée le
           tax_invoice: FACTURE
@@ -2557,6 +2601,10 @@ fr_BE:
             distributor: "Distributeur : "
             order_cycle: "Cycle de vente : "
       overview:
+        products:
+          active_products:
+            zero: "Vous n'avez aucun produit actif."
+            one: "U heeft één aktieve product"
         order_cycles:
           order_cycles: "Cycles de vente"
           order_cycles_tip: "Les cycles de vente définissent quand et où vos produits peuvent être commandés par vos acheteurs."
@@ -2566,6 +2614,12 @@ fr_BE:
             other: "Vous avez %{count} cycles de vente actifs."
           manage_order_cycles: "GERER LES CYCLES DE VENTE"
       payment_methods:
+        new:
+          new_payment_method: "Nouvelle méthode de paiement"
+          back_to_payment_methods_list: "Retour à la liste des paiements"
+        edit:
+          editing_payment_method: "Modification des méthodes de paiement en cours"
+          back_to_payment_methods_list: "Retour à la liste des paiements"
         stripe_connect:
           enterprise_select_placeholder: Choisir...
           loading_account_information_msg: Informations de compte en cours de chargement depuis Stripe, veuillez patienter...
@@ -2617,11 +2671,16 @@ fr_BE:
         display_as:
           display_as: Unité affichéé
       reports:
+        table:
+          select_and_search: "Sélectionnez les filtres et cliquez sur %{option} pour accéder à vos données."
         bulk_coop:
           bulk_coop_supplier_report: 'Achats groupés - Totaux par Producteur'
           bulk_coop_allocation: 'Achats groupés - Allocation'
           bulk_coop_packing_sheets: 'Achats groupés - Feuilles de préparation des paniers'
           bulk_coop_customer_payments: 'Achats groupés - Paiement des acheteurs'
+        enterprise_fee_summaries:
+          report:
+            none: "Aucun"
       users:
         index:
           listing_users: "Utilisateur d'annonces"

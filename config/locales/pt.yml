@@ -24,6 +24,13 @@ pt:
             orders_close_at:
               after_orders_open_at: tem de ser após data de abertura
   activemodel:
+    attributes:
+      order_management/reports/enterprise_fee_summary/parameters:
+        distributor_ids: "Centrais"
+        producer_ids: "Produtores"
+        order_cycle_ids: "Ciclos de Encomendas"
+        shipping_method_ids: "Métodos de Envio"
+        payment_method_ids: "Métodos de pagamento"
     errors:
       models:
         subscription_validator:
@@ -1888,7 +1895,6 @@ pt:
   spree_admin_enterprises_none_text: "Ainda não tem nenhuma organização"
   spree_admin_enterprises_tabs_hubs: "CENTRAIS"
   spree_admin_enterprises_producers_manage_products: "GERIR PRODUTOS"
-  spree_admin_enterprises_any_active_products_text: "Não tem nenhum produto ativo."
   spree_admin_enterprises_create_new_product: "CRIAR UM NOVO PRODUTO"
   spree_admin_single_enterprise_alert_mail_confirmation: "Por favor confirme o endereço de email para"
   spree_admin_single_enterprise_alert_mail_sent: "Enviamos um email para"
@@ -2395,6 +2401,25 @@ pt:
   producers:
     signup:
       start_free_profile: "Comece com um perfil gratuito e expanda quando estivere pronto/a!"
+  order_management:
+    reports:
+      enterprise_fee_summary:
+        fee_calculated_on_transfer_through_all: "Tudo"
+        fee_placements:
+          supplier: "Entrada"
+          distributor: "Saída"
+          coordinator: "Coordenador"
+        formats:
+          csv:
+            header:
+              fee_type: "Tipo de Taxa"
+              customer_name: "Consumidor"
+              tax_category_name: "Categoria de Imposto"
+          html:
+            header:
+              fee_type: "Tipo de Taxa"
+              customer_name: "Consumidor"
+              tax_category_name: "Categoria de Imposto"
   spree:
     email: Email
     account_updated: "Conta actualizada!"
@@ -2429,6 +2454,9 @@ pt:
             distributor: "Distribuidor:"
             order_cycle: "Ciclo de encomendas:"
       overview:
+        products:
+          active_products:
+            zero: "Não tem nenhum produto ativo."
         order_cycles:
           order_cycles: "Ciclos de Encomendas"
           order_cycles_tip: "Os ciclos de encomendas determinam quando e onde é que os seus produtos estão disponíveis para os consumidores."
@@ -2494,6 +2522,9 @@ pt:
           bulk_coop_allocation: 'Cooperativa por Atacado - Alocação'
           bulk_coop_packing_sheets: 'Cooperativa por Atacado - Folhas de Empacotamento'
           bulk_coop_customer_payments: 'Cooperativa por Atacado - Pagamentos do Consumidor'
+        enterprise_fee_summaries:
+          report:
+            none: "Nenhum"
       users:
         index:
           listing_users: "Lista de Utilizadores"

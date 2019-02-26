@@ -2210,12 +2210,12 @@ nb:
   report_header_eft_price: "EFT (%{currency})"
   report_header_paypal_price: "PayPal (%{currency})"
   report_header_sku: SKU
-  report_header_amount: Beløp
+  report_header_amount: Antall
   report_header_balance: Balanse
   report_header_total_cost: "Totalkostnad"
   report_header_total_ordered: Total bestilt
   report_header_total_max: Total Maks
-  report_header_total_units: Totalt antall enheter
+  report_header_total_units: Total Mengde
   report_header_sum_max_total: "Sum Maks. Total"
   report_header_total_excl_vat: "Sum eks. avgift (%{currency_symbol})"
   report_header_total_incl_vat: "Sum inkl. avgift (%{currency_symbol})"
