@@ -45,7 +45,7 @@
           = t(:date_completed)
           \:
         %dd#date_complete
-          = pretty_time(@order.completed_at)
+          = [I18n.l(@order.completed_at.to_date, format: :long), @order.completed_at.strftime("%l:%M %p")].join(" ")
 
   %nav.menu
     %ul
