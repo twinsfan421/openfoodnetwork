@@ -74,8 +74,6 @@ Spree::Core::Engine.routes.prepend do
         end
       end
     end
-
-    resources :taxons, :only => [:index]
   end
 
   namespace :admin do
