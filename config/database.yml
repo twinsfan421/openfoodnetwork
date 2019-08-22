@@ -11,8 +11,11 @@ development:
   database: open_food_network_dev
 
 test:
-  <<: *defaults
   database: open_food_network_test
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: <%= ENV.fetch('OFN_DB_HOST', 'localhost') %>
 
 production:
   <<: *defaults
